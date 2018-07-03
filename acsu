@@ -18,11 +18,11 @@ function usage () {
 
 
 function login () {
-    if [ ! -e acsu.conf ]; then
+    if [ ! -e ./acsu.conf ]; then
         error "「\033[1;32macsu init\033[0;39m」を実行して初期設定をしてください"
     fi
-    source acsu.conf
-    pw=`openssl enc -d -aes-256-cbc -in .acsupw -k ${key}`
+    source ./acsu.conf
+    pw=`openssl enc -d -aes-256-cbc -in ./.acsupw -k ${key}`
     status=`curl "https://login.shinshu-u.ac.jp/cgi-bin/Login.cgi" \
     --data "uid=${uid}&pwd=${pw}" \
     | grep Login`
@@ -36,19 +36,18 @@ function login () {
 
 
 function init () {
-    if [ -e acsu.conf ]; then
+    if [ -e ./acsu.conf ]; then
         error "「\033[1;32macsu reset\033[0;39m」を実行して設定をリセットしてください"
     fi
     echo -n "学籍番号: "
     read uid
-    echo "uid='${uid}'" > acsu.conf
+    echo "uid='${uid}'" > ./acsu.conf
     echo -n "パスワード: "
     read -s pw
     key=`openssl rand -base64 6`
-    echo "key='${key}'" >> acsu.conf
+    echo "key='${key}'" >> ./acsu.conf
     echo ${pw} \
-    | openssl aes-256-cbc -e -out .acsupw -pass pass:${key} -p \
-    > /dev/null
+    | openssl aes-256-cbc -e -out ./.acsupw -pass pass:${key}
     echo -e "\n\033[1;34m初期設定が完了しました\033[0;39m"
 }
 
@@ -60,8 +59,8 @@ function reset () {
         "" | "Y" | "y" | "yes" | "Yes" | "YES" ) ;;
         * ) exit 1;;
     esac
-    rm -f .acsupw
-    rm -f acsu.conf
+    rm -f ./.acsupw
+    rm -f ./acsu.conf
     echo -e "\033[1;34mリセット完了しました\033[0;39m"
 }
 
