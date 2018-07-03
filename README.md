@@ -2,7 +2,17 @@
 ACSUネットワークにログインするためのシェルスクリプト
 
 ## インストール
-
+Homebrewからインストールできる
+```bash
+brew tap yoidea/acsulogin
+brew install acsulogin
+```
+もしくは手動でインストール
+```bash
+git clone https://github.com/yoidea/acsulogin.git
+cd acsulogin/
+cp acsu /usr/bin
+```
 
 ## 使用法
 - `acsu`: ACSUネットワークにログイン（省略形）
