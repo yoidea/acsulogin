@@ -38,6 +38,7 @@ function login () {
     test "${status}" = "Login Success"
     if [ $? = "0" ]; then
         echo -e "\033[1;34mログイン成功\033[0;39m"
+        show
     else
         error "\033[1;31mログイン失敗\033[0;39m"
     fi
