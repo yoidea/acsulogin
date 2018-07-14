@@ -17,6 +17,15 @@ function usage () {
 }
 
 
+function show () {
+    pw=`openssl enc -d -aes-256-cbc -in ./.acsupw -k ${key}`
+    param=`curl --verbose 'https://tool-cloud.ealps.shinshu-u.ac.jp/eALPS-Portal/' \
+    --data 'j_username=${uid}&password=${pw}' \
+    2>&1 | grep -o ";jsessionid=.*?0"`
+    open "https://tool-cloud.ealps.shinshu-u.ac.jp/eALPS-Portal/${param}"
+}
+
+
 function login () {
     if [ ! -e ./acsu.conf ]; then
         error "「\033[1;32macsu init\033[0;39m」を実行して初期設定をしてください"
