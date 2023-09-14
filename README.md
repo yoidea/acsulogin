@@ -1,5 +1,7 @@
 # acsulogin
-ACSUネットワークにログインするためのシェルスクリプト
+
+信州大学の学内ネットワークのACSUにSSOログインするためのシェルスクリプト
+https://www.shinshu-u.ac.jp/institution/iic/service/portalsiteacsu.html
 
 ## インストール
 Homebrewからインストールできる
